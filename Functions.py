@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
+#Vai buscar as configurações a um ficheiro .Conf
 def cameraConfig() :
 	try:
 		file = open("Camera.Conf", "r") 
@@ -18,7 +19,7 @@ def cameraConfig() :
 	except:
 		return "Error Reading Camera Config!!!"
 
-
+#Tira a foto fazendo guardar da foto atraves de um request
 def takePicture( array , foto ):
 	try:
 		for i in array:
@@ -35,6 +36,9 @@ def takePicture( array , foto ):
 		print ("Take Picture Error!")
 		return 0
 
+#Efetua o Upload para Imgur, através do módulo pyimgur.
+#É necessário ter conta no Imgur e proceder a criação de um seviço de aplicação
+#O ID recebido deve ser passado no client_id
 def uploadImage (CLIENT_ID, fotoAnterior, fotoAtual): 
 	linkList = []
 	im = pyimgur.Imgur(CLIENT_ID)
@@ -53,6 +57,9 @@ def uploadImage (CLIENT_ID, fotoAnterior, fotoAtual):
 		print ("Upload Error!")
 		return 
 
+#Recebe o link dá imagem onde o upload foi feito e faz uma pesquisa por imagem
+#No nosso amigo Google
+#Retiramos o texto com o resultado da pesquisa.
 def search(linkList):
 	searchList = []
 	try:
